@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import List from './components/list'
+import Modal from './components/modal';
+import useModal from './components/useModal';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  const { modal, toggle } = useModal()
+  
+  return(
+    <>       
+      <Modal
+        isOpen={modal.isOpen}
+        title={modal.content.title}
+        body={modal.content.body}
+        hide={toggle}
+      />
+      <List modalToggle={toggle}/> 
+    </>
+  )
 }
-
 export default App;
